@@ -22,5 +22,5 @@ cd pyAutoEncode/
 * use the aimg api to upload screenshots Automatically - https://img.awesome-hd.me/settings
 
 ## Credits
-- mshriver2
-- sd31117
+mshriver2
+sd31117
