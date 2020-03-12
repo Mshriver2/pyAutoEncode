@@ -41,7 +41,13 @@ def write_avs(filename, res, file_path):
 def extract_wav(file_path, name):
 
     #Runs wav extraction command in new shell + waits for finish
-    subprocess.check_output("start /wait ffmpeg -i " + file_path + " -acodec pcm_s16le -ac 2 " + name + ".wav", shell=True)
+    subprocess.check_output("start /wait ffmpeg -i " + file_path + " -acodec pcm_s16le -ac 2 " + name + ".wav", shell=True)\
+
+#encodes the remux mkv file with x264 using avs2yuv
+def run_encode(avs_file, name, resolution):
+
+    #Runs avs2yuv encode command in new shell + waits for finish
+    subprocess.check_output("start /wait avs2yuv \"" + avs_file + "\" -o - | x264 --level 4.1 --preset veryslow --crf 18.0 --deblock -3:-3 --bframes 16 --vbv-bufsize 78125 --qcomp 0.6 --direct auto --min-keyint 24 --vbv-maxrate 62500 --no-mbtree --trellis 2 --rc-lookahead 250 --merange 34 --subme 11 --no-dct-decimate --threads 8 --no-fast-pskip --colormatrix bt709 --colorprim bt709 --transfer bt709 --aq-mode 3 -o " + name + "-" + resolution + "encode.mkv --demuxer y4m - 2>&1", shell=True)
 
 ################ Main ################
 
