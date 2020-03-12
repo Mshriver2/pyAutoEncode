@@ -37,7 +37,11 @@ def write_avs(filename, res, file_path):
 
 ################
 
-#add functions
+#Extracts .wav file from MKV
+def extract_wav(file_path, name):
+
+    #Runs wav extraction command in new shell + waits for finish
+    subprocess.check_output("start /wait ffmpeg -i " + file_path + " -acodec pcm_s16le -ac 2 " + name + ".wav", shell=True)
 
 ################ Main ################
 
