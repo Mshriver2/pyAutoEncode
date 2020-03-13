@@ -21,17 +21,17 @@ def write_avs(filename, res, file_path):
 
         #Writes to file 720p.avs for AvspMod (720p mode)
         f = open(filename,'wb')
-        f.write('ffvideosource("' + path + '")\nSpline36ResizeMod(1280, 720)\nAutoCrop(mode=0, wMultOf=4, hMultOf=2, leftAdd=0, topAdd=0, rightAdd=0, bottomAdd=0, threshold=40, samples=10, samplestartframe=0, sampleendframe=-1, aspect=0)')
+        f.write('ffvideosource("' + file_path + '")\nSpline36ResizeMod(1280, 720)\nAutoCrop(mode=0, wMultOf=4, hMultOf=2, leftAdd=0, topAdd=0, rightAdd=0, bottomAdd=0, threshold=40, samples=10, samplestartframe=0, sampleendframe=-1, aspect=0)')
 
     elif res == "both":
 
         #Writes to both 1080p.avs and 720p.avs for AvspMod (both modes)
         f = open(filename + res + '.avs','wb')
-        f.write('ffvideosource("' + path + '")\nAutoCrop(mode=0, wMultOf=4, hMultOf=2, leftAdd=0, topAdd=0, rightAdd=0, bottomAdd=0, threshold=40, samples=10, samplestartframe=0, sampleendframe=-1, aspect=0)')
+        f.write('ffvideosource("' + file_path + '")\nAutoCrop(mode=0, wMultOf=4, hMultOf=2, leftAdd=0, topAdd=0, rightAdd=0, bottomAdd=0, threshold=40, samples=10, samplestartframe=0, sampleendframe=-1, aspect=0)')
         f.close()
 
         f = open('720p.avs','wb')
-        f.write('ffvideosource("' + path + '")\nSpline36ResizeMod(1280, 720)\nAutoCrop(mode=0, wMultOf=4, hMultOf=2, leftAdd=0, topAdd=0, rightAdd=0, bottomAdd=0, threshold=40, samples=10, samplestartframe=0, sampleendframe=-1, aspect=0)')
+        f.write('ffvideosource("' + file_path + '")\nSpline36ResizeMod(1280, 720)\nAutoCrop(mode=0, wMultOf=4, hMultOf=2, leftAdd=0, topAdd=0, rightAdd=0, bottomAdd=0, threshold=40, samples=10, samplestartframe=0, sampleendframe=-1, aspect=0)')
 
     f.close()
 
