@@ -26,7 +26,7 @@ def write_avs(filename, res, file_path):
     elif res == "both":
 
         #Writes to both 1080p.avs and 720p.avs for AvspMod (both modes)
-        f = open('1080p.avs','wb')
+        f = open('1080p' + filename + '.avs','wb')
         f.write('ffvideosource("' + path + '")\nAutoCrop(mode=0, wMultOf=4, hMultOf=2, leftAdd=0, topAdd=0, rightAdd=0, bottomAdd=0, threshold=40, samples=10, samplestartframe=0, sampleendframe=-1, aspect=0)')
         f.close()
 
@@ -48,6 +48,21 @@ def run_encode(avs_file, name, resolution):
 
     #Runs avs2yuv encode command in new shell + waits for finish
     subprocess.check_output("start /wait avs2yuv \"" + avs_file + "\" -o - | x264 --level 4.1 --preset veryslow --crf 18.0 --deblock -3:-3 --bframes 16 --vbv-bufsize 78125 --qcomp 0.6 --direct auto --min-keyint 24 --vbv-maxrate 62500 --no-mbtree --trellis 2 --rc-lookahead 250 --merange 34 --subme 11 --no-dct-decimate --threads 8 --no-fast-pskip --colormatrix bt709 --colorprim bt709 --transfer bt709 --aq-mode 3 -o " + name + "-" + resolution + "encode.mkv --demuxer y4m - 2>&1", shell=True)
+
+#converts the wav audio file to ac3 using AHK
+def convert_to_ac3():
+
+    #imports the pynput python keyboard packages
+    from pynput.keyboard import Key, Controller
+
+    #defines controller to execute key presses
+    keyboard = Controller()
+
+    #executes ahk script
+    keyboard.press(Key.alt)
+    keyboard.press('8')
+    keyboard.release('8')
+    keyboard.release(Key.alt)
 
 ################ Main ################
 
