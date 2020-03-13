@@ -3,6 +3,11 @@ Make your encodes a breeze with python.
 
 ## Installation
 Install Python 2.7
+Install Pip Packages:
+```shell
+pip install pynput
+pip install clipboard
+```
 
 ## Usage
 Run "python encode.py" in a terminal and follow the prompts.
