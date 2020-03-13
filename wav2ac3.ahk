@@ -6,11 +6,11 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; runs soundforge
 !8::
 Run, C:\Program Files (x86)\Sony\Sound Forge Pro 11.0\Forge110.exe, , max
-IfWinActive, Sound Forge Pro 11.0
-{
 
+WinActivate Sound Forge Pro 11.0
+Sleep, 5000
 Send ^o
 
 return
 
-}
+
