@@ -50,7 +50,13 @@ def run_encode(avs_file, name, resolution):
     subprocess.check_output("start /wait avs2yuv \"" + avs_file + "\" -o - | x264 --level 4.1 --preset veryslow --crf 18.0 --deblock -3:-3 --bframes 16 --vbv-bufsize 78125 --qcomp 0.6 --direct auto --min-keyint 24 --vbv-maxrate 62500 --no-mbtree --trellis 2 --rc-lookahead 250 --merange 34 --subme 11 --no-dct-decimate --threads 8 --no-fast-pskip --colormatrix bt709 --colorprim bt709 --transfer bt709 --aq-mode 3 -o " + name + "-" + resolution + "encode.mkv --demuxer y4m - 2>&1", shell=True)
 
 #converts the wav audio file to ac3 using AHK
-def convert_to_ac3():
+def convert_to_ac3(wav_name):
+
+    #imports the clipboard package
+    import clipboard
+
+    #copys the audio name to clipboard
+    clipboard.copy(audio_name + '.wav')
 
     #imports the pynput python keyboard packages
     from pynput.keyboard import Key, Controller
@@ -71,6 +77,7 @@ if resolution == "1080":
     #Executes the write_avs function in 1080p mode
     write_avs('1080p.avs', '1080', path)
     extract_wav(path, audio_name)
+    convert_to_ac3(audio_name)
     run_encode('1080p.avs', encode_name, '1080p')
 
 elif resolution == "720":
@@ -78,12 +85,14 @@ elif resolution == "720":
     #Executes the write_avs function in 720p mode
     write_avs('720p.avs', '720', path)
     extract_wav(path, audio_name)
+    convert_to_ac3(audio_name)
     run_encode('720p.avs', encode_name, '720p')
 
 elif resolution == "both":
     #Executes the write_avs function in both modes
     write_avs('', 'both', path)
     extract_wav(path, audio_name)
+    convert_to_ac3(audio_name)
     run_encode('1080p.avs', encode_name, '1080p')
     run_encode('720p.avs', encode_name, '720p')
 
