@@ -56,14 +56,14 @@ if resolution == "1080":
     #Executes the write_avs function in 1080p mode
     write_avs(encode_name + resolution + '.avs', '1080', path)
     extract_wav(path, audio_name)
-    run_encode('1080p.avs', encode_name, '1080p')
+    run_encode(encode_name + '1080.avs', encode_name, '1080p')
 
 elif resolution == "720":
 
     #Executes the write_avs function in 720p mode
     write_avs(encode_name + resolution + '.avs', '720', path)
     extract_wav(path, audio_name)
-    run_encode('720p.avs', encode_name, '720p')
+    run_encode(encode_name + '720.avs', encode_name, '720p')
 
 elif resolution == "both":
     #Executes the write_avs function in both modes
