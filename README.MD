@@ -2,6 +2,7 @@
 Make your encodes a breeze with python.
 
 ## Installation
+Install AutoHotkey v1.2+  
 Install Python 2.7  
 Install Pip Packages:  
 ```shell
@@ -10,6 +11,7 @@ pip install clipboard
 ```
 
 ## Usage
+Execute wav2ac3.ahk  
 Run "python encode.py" in a terminal and follow the prompts.
 
 ## Contributing
