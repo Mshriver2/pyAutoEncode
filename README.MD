@@ -25,8 +25,9 @@ cd pyAutoEncode/
 ## TODO
 * ~~Find a way to execute avs2yuv script in a git-bash terminal using Python~~
 * ~~use unique .avs file names to allow multiple encodes at once~~
-* create a function to convert the wav files to ac3 with sound forge
-* finish ahk file that executes sound forge commands
+* ~~create a function to convert the wav files to ac3 with sound forge~~
+* ~~finish ahk file that executes sound forge commands~~
+* create checks in the functions to check if the ac3 file or wav file already exits
 * create a function to take screenshots using AvspMod or a CLI screenshot tool
 * use the aimg api to upload screenshots Automatically - https://img.awesome-hd.me/settings
 
