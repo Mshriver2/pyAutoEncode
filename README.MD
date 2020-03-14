@@ -2,8 +2,8 @@
 Make your encodes a breeze with python.
 
 ## Installation
-Install Python 2.7
-Install Pip Packages:
+Install Python 2.7  
+Install Pip Packages:  
 ```shell
 pip install pynput
 pip install clipboard
@@ -29,5 +29,5 @@ cd pyAutoEncode/
 * use the aimg api to upload screenshots Automatically - https://img.awesome-hd.me/settings
 
 ## Credits
-mshriver2
+mshriver2  
 sd31117
