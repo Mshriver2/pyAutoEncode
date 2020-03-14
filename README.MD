@@ -8,6 +8,7 @@ Install Pip Packages:
 ```shell
 pip install pynput
 pip install clipboard
+pip install pyfiglet
 ```
 
 ## Usage
