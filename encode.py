@@ -3,6 +3,21 @@
 import sys
 import subprocess
 
+# imports pyfiglet - used for ascii banner generation
+import pyfiglet
+from pyfiglet import Figlet
+
+#defines the main ascii banner
+
+#command for fonts list: pyfiglet --list_fonts 
+ascii_banner_title = Figlet(font='doom')
+
+#prints out the ascii_banner
+print("##################################################################")
+print(ascii_banner_title.renderText('pyAutoEncode'))
+print("##################################################################")
+
+#gets all of the user input
 path = raw_input("Enter path of movie to encode: ")
 resolution = raw_input("Quality of encode - (1080p/720p/both): ")
 audio_name = raw_input("Enter a name for the .wav file: ")
