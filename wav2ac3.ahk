@@ -28,9 +28,14 @@ Sleep, 3000
 Send {Enter}
 
 ;waits for audio to finish saving then closes popup message
-Sleep, 120000
+Sleep, 600000
 Send {Tab}
 Sleep, 500
 Send {Enter}
+sleep, 5000
+
+;closes the window
+SetTitleMatchMode 2
+WinClose Sound Forge Pro 11.0
 
 return
