@@ -28,7 +28,7 @@ cd pyAutoEncode/
 * ~~use unique .avs file names to allow multiple encodes at once~~
 * ~~create a function to convert the wav files to ac3 with sound forge~~
 * ~~finish ahk file that executes sound forge commands~~
-* add a function that allows you to run a test encode and returns the estimated file size
+* ~~add a function that allows you to run a test encode and returns the estimated file size~~
 * create checks in the functions to check if the ac3 file or wav file already exits
 * create a function to take screenshots using AvspMod or a CLI screenshot tool (ffmpeg or screengen in awsmfunc for CLI screens)
 * use the aimg api to upload screenshots Automatically - https://img.awesome-hd.me/settings
