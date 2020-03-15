@@ -19,24 +19,31 @@ print("##################################################################")
 
 #gets all of the user input
 path = raw_input("Enter path of movie to encode: ")
-resolution = raw_input("Quality of encode - (1080p/720p/both): ")
+resolution = raw_input("Quality of encode - (1080p/720p/both) - both does not work for tests: ")
 audio_name = raw_input("Enter a name for the .wav file: ")
 encode_name = raw_input("Enter a name for encoded mkv file: ")
 is_test = raw_input("Would you like to run a test encode? Y / N")
 
 # function for running a test encode, it selects 30 seconds worth of random frames for the test
-def test_encode(res):
+def test_encode(res, filename, file_path, test_name):
 
     if res == "1080p":
+
         #Writes to file 1080p-test.avs for AvspMod (1080p test mode)
         f = open(filename,'wb')
         f.write('ffvideosource("' + file_path + '")\nSelectRangeEvery(2000,50,10000)\nAutoCrop(mode=0, wMultOf=4, hMultOf=2, leftAdd=0, topAdd=0, rightAdd=0, bottomAdd=0, threshold=40, samples=10, samplestartframe=0, sampleendframe=-1, aspect=0)')
+
+        #runs the test encode in 1080p
+        run_encode(filename, test_name, '1080p')
 
     elif res == "720p":
+
         #Writes to file 1080p-test.avs for AvspMod (1080p test mode)
         f = open(filename,'wb')
         f.write('ffvideosource("' + file_path + '")\nSelectRangeEvery(2000,50,10000)\nAutoCrop(mode=0, wMultOf=4, hMultOf=2, leftAdd=0, topAdd=0, rightAdd=0, bottomAdd=0, threshold=40, samples=10, samplestartframe=0, sampleendframe=-1, aspect=0)')
 
+        #runs the test encode in 720p
+        run_encode(filename, test_name, '720p')
 
 # function for writing .avs files
 def write_avs(filename, res, file_path):
@@ -104,31 +111,37 @@ def convert_to_ac3(wav_name):
 
 if is_test == "Y":
 
-    test_encode()
+    test_encode(resolution, encode_name + resolution + '.test.avs', path, encode_name)
 
-elif resolution == "1080":
+elif is_test == "N":
 
-    #Executes the write_avs function in 1080p mode
-    write_avs(encode_name + resolution + '.avs', '1080', path)
-    extract_wav(path, audio_name)
-    convert_to_ac3(audio_name)
-    run_encode(encode_name + '1080.avs', encode_name, '1080p')
+    if resolution == "1080":
 
-elif resolution == "720":
+        #Executes the write_avs function in 1080p mode
+        write_avs(encode_name + resolution + '.avs', '1080', path)
+        extract_wav(path, audio_name)
+        convert_to_ac3(audio_name)
+        run_encode(encode_name + '1080.avs', encode_name, '1080p')
 
-    #Executes the write_avs function in 720p mode
-    write_avs(encode_name + resolution + '.avs', '720', path)
-    extract_wav(path, audio_name)
-    convert_to_ac3(audio_name)
-    run_encode(encode_name + '720.avs', encode_name, '720p')
+    elif resolution == "720":
 
-elif resolution == "both":
-    #Executes the write_avs function in both modes
-    write_avs(encode_name, 'both', path)
-    extract_wav(path, audio_name)
-    convert_to_ac3(audio_name)
-    run_encode(encode_name + '1080.avs', encode_name, '1080p')
-    run_encode(encode_name + '720.avs', encode_name, '720p')
+        #Executes the write_avs function in 720p mode
+        write_avs(encode_name + resolution + '.avs', '720', path)
+        extract_wav(path, audio_name)
+        convert_to_ac3(audio_name)
+        run_encode(encode_name + '720.avs', encode_name, '720p')
+
+    elif resolution == "both":
+
+        #Executes the write_avs function in both modes
+        write_avs(encode_name, 'both', path)
+        extract_wav(path, audio_name)
+        convert_to_ac3(audio_name)
+        run_encode(encode_name + '1080.avs', encode_name, '1080p')
+        run_encode(encode_name + '720.avs', encode_name, '720p')
+
+    else:
+        print("error")
 
 else:
-    print("error")
+    print("Please answer Y or N for test encode question.")
