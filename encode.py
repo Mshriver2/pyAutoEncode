@@ -9,7 +9,7 @@ from pyfiglet import Figlet
 
 #defines the main ascii banner
 
-#command for fonts list: pyfiglet --list_fonts 
+#command for fonts list: [pyfiglet --list_fonts] [font examples = http://www.figlet.org/examples.html]
 ascii_banner_title = Figlet(font='doom')
 
 #prints out the ascii_banner
@@ -22,6 +22,21 @@ path = raw_input("Enter path of movie to encode: ")
 resolution = raw_input("Quality of encode - (1080p/720p/both): ")
 audio_name = raw_input("Enter a name for the .wav file: ")
 encode_name = raw_input("Enter a name for encoded mkv file: ")
+is_test = raw_input("Would you like to run a test encode? Y / N")
+
+# function for running a test encode, it selects 30 seconds worth of random frames for the test
+def test_encode(res):
+
+    if res == "1080p":
+        #Writes to file 1080p-test.avs for AvspMod (1080p test mode)
+        f = open(filename,'wb')
+        f.write('ffvideosource("' + file_path + '")\nSelectRangeEvery(2000,50,10000)\nAutoCrop(mode=0, wMultOf=4, hMultOf=2, leftAdd=0, topAdd=0, rightAdd=0, bottomAdd=0, threshold=40, samples=10, samplestartframe=0, sampleendframe=-1, aspect=0)')
+
+    elif res == "720p":
+        #Writes to file 1080p-test.avs for AvspMod (1080p test mode)
+        f = open(filename,'wb')
+        f.write('ffvideosource("' + file_path + '")\nSelectRangeEvery(2000,50,10000)\nAutoCrop(mode=0, wMultOf=4, hMultOf=2, leftAdd=0, topAdd=0, rightAdd=0, bottomAdd=0, threshold=40, samples=10, samplestartframe=0, sampleendframe=-1, aspect=0)')
+
 
 # function for writing .avs files
 def write_avs(filename, res, file_path):
@@ -87,7 +102,11 @@ def convert_to_ac3(wav_name):
 
 ################ Main ################
 
-if resolution == "1080":
+if is_test == "Y":
+
+    test_encode()
+
+elif resolution == "1080":
 
     #Executes the write_avs function in 1080p mode
     write_avs(encode_name + resolution + '.avs', '1080', path)
