@@ -1,6 +1,9 @@
 # pyAutoEncode
 Make your encodes a breeze with python.
 
+## Screenshots
+add screenshots here, add gifs of usage if possible http://giftuna.io/
+
 ## Installation
 Install AutoHotkey v1.2+  
 Install Python 2.7  
