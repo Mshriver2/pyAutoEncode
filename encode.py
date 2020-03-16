@@ -179,11 +179,12 @@ elif is_test == "N":
 
         #checks if .avs file exists for 720p
         if not check_file(encode_name + '720' + '.avs'):
+            write_avs(encode_name + resolution + '.avs', '720', path)
 
             #checks if .avs file exists for 1080p
             if not check_file(encode_name + '1080' + '.avs'):
                 #Executes the write_avs function in both modes
-                write_avs(encode_name, 'both', path)
+                write_avs(encode_name + resolution + '.avs', '1080', path)
 
         #checks if .wav exists
         if not check_file(audio_name + ".wav")
