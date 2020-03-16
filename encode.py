@@ -177,17 +177,28 @@ elif is_test == "N":
 
     elif resolution == "both":
 
+        #checks if .avs file exists for 720p
         if not check_file(encode_name + '720' + '.avs'):
+
+            #checks if .avs file exists for 1080p
             if not check_file(encode_name + '1080' + '.avs'):
                 #Executes the write_avs function in both modes
                 write_avs(encode_name, 'both', path)
-            if not check_file(audio_name + ".wav")
+
+        #checks if .wav exists
+        if not check_file(audio_name + ".wav")
                 extract_wav(path, audio_name)
-            if not check_file(audio_name + ".ac3")
+
+        #checks if .ac3 exits
+        if not check_file(audio_name + ".ac3")
                 convert_to_ac3(audio_name)
-            if not check_file(encode_name + ".mkv")
+
+        #checks if 1080encode.mkv exists exits
+        if not check_file(encode_name + ".mkv")
                 run_encode(encode_name + '1080.avs', encode_name, '1080p')
-            if not check_file(encode_name + ".mkv")
+
+        #checks if 7200encode.mkv exists exits
+        if not check_file(encode_name + ".mkv")
                 run_encode(encode_name + '720.avs', encode_name, '720p')
 
     else:
