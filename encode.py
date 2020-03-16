@@ -120,6 +120,15 @@ def convert_to_ac3(wav_name):
     keyboard.release('8')
     keyboard.release(Key.alt)
 
+#function that checks if a file already exists
+def check_file(file_to_check):
+    if os.path.isfile(file_to_check):
+        print("The file " + file_to_check + " already exists. Ignoring.")
+        return True
+    else:
+        print("The file " + file_to_check + " does not exist. Creating new file...")
+        return False
+
 ################ Main ################
 
 if is_test == "Y":
@@ -133,41 +142,53 @@ elif is_test == "N":
         if not check_file(encode_name + resolution + '.avs'):
             #Executes the write_avs function in 1080p mode
             write_avs(encode_name + resolution + '.avs', '1080', path)
+            print("Done!")
 
         if not check_file(audio_name + '.wav'):
             extract_wav(path, audio_name)
+            print("Done!")
 
         if not check_file(audio_name + '.ac3'):
             convert_to_ac3(audio_name)
+            print("Done!")
 
         if not check_file(encode_name + '-' + resolution + "pencode.mkv"):
             run_encode(encode_name + '1080.avs', encode_name, '1080p')
+            print("Done!")
 
     elif resolution == "720":
 
         if not check_file(encode_name + resolution + '.avs'):
             #Executes the write_avs function in 1080p mode
             write_avs(encode_name + resolution + '.avs', '720', path)
+            print("Done!")
 
         if not check_file(audio_name + '.wav'):
             extract_wav(path, audio_name)
+            print("Done!")
 
         if not check_file(audio_name + '.ac3'):
             convert_to_ac3(audio_name)
+            print("Done!")
 
         if not check_file(encode_name + '-' + resolution + "pencode.mkv"):
             run_encode(encode_name + '720.avs', encode_name, '720p')
+            print("Done!")
 
     elif resolution == "both":
 
-        if check_file(encode_name + '720' + '.avs'):
-            if check_file(encode_name + '1080' + '.avs'):
+        if not check_file(encode_name + '720' + '.avs'):
+            if not check_file(encode_name + '1080' + '.avs'):
                 #Executes the write_avs function in both modes
                 write_avs(encode_name, 'both', path)
-        extract_wav(path, audio_name)
-        convert_to_ac3(audio_name)
-        run_encode(encode_name + '1080.avs', encode_name, '1080p')
-        run_encode(encode_name + '720.avs', encode_name, '720p')
+            if not check_file(audio_name + ".wav")
+                extract_wav(path, audio_name)
+            if not check_file(audio_name + ".ac3")
+                convert_to_ac3(audio_name)
+            if not check_file(encode_name + ".mkv")
+                run_encode(encode_name + '1080.avs', encode_name, '1080p')
+            if not check_file(encode_name + ".mkv")
+                run_encode(encode_name + '720.avs', encode_name, '720p')
 
     else:
         print("error")
