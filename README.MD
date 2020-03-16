@@ -1,5 +1,5 @@
 # pyAutoEncode
-Make your encodes a breeze with python.
+Make your encodes a breeze with python. This script allows the complete automation of encoding a video with only a few clicks. This project uses Python, Python Pip packages, as well as AutoHotKey to automate the process of using the x264, Avspmod, avs2yuv, ffmpeg and Sound Forge applications to create high quality encodes.
 
 ## Screenshots
 add screenshots here, add gifs of usage if possible http://giftuna.io/
