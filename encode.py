@@ -2,24 +2,34 @@
 #Automatically encodes movies from the remux copy of a movie using x264, AvspMod, FFMpeg and Avs2YUV.
 import sys
 import subprocess
+import os.path
 
-# imports pyfiglet - used for ascii banner generation
-import pyfiglet
-from pyfiglet import Figlet
+# checks to see if pip pyfiglet package is importable
+try:
+    # imports pyfiglet - used for ascii banner generation
+    import pyfiglett
+    from pyfiglet import Figlett
 
-#defines the main ascii banner
+# runs if pyfiglet can't be imported
+except:
+    # prints out the non ascii_banner
+    print("##################################################################")
+    print('#                          pyAutoEncode                          #')
+    print("##################################################################\n")
 
-#command for fonts list: [pyfiglet --list_fonts] [font examples = http://www.figlet.org/examples.html]
-ascii_banner_title = Figlet(font='doom')
+# if pyfiglet can be imported defines the main ascii banner
+else:
+    # command for fonts list: [pyfiglet --list_fonts] [font examples = http://www.figlet.org/examples.html]
+    ascii_banner_title = Figlet(font='doom')
 
-#prints out the ascii_banner
-print("##################################################################")
-print(ascii_banner_title.renderText('pyAutoEncode'))
-print("##################################################################")
+    # prints out the ascii_banner
+    print("##################################################################")
+    print(ascii_banner_title.renderText('pyAutoEncode'))
+    print("##################################################################\n")
 
-#gets all of the user input
+# gets all of the user input
 path = raw_input("Enter path of movie to encode: ")
-resolution = raw_input("Quality of encode - (1080p/720p/both) - both does not work for tests: ")
+resolution = raw_input("Quality of encode - (1080/720/both) - both does not work for tests: ")
 audio_name = raw_input("Enter a name for the .wav file: ")
 encode_name = raw_input("Enter a name for encoded mkv file: ")
 is_test = raw_input("Would you like to run a test encode? Y / N")
@@ -72,6 +82,9 @@ def write_avs(filename, res, file_path):
 
     f.close()
 
+
+
+
 ################
 
 #Extracts .wav file from MKV
@@ -117,24 +130,40 @@ elif is_test == "N":
 
     if resolution == "1080":
 
-        #Executes the write_avs function in 1080p mode
-        write_avs(encode_name + resolution + '.avs', '1080', path)
-        extract_wav(path, audio_name)
-        convert_to_ac3(audio_name)
-        run_encode(encode_name + '1080.avs', encode_name, '1080p')
+        if not check_file(encode_name + resolution + '.avs'):
+            #Executes the write_avs function in 1080p mode
+            write_avs(encode_name + resolution + '.avs', '1080', path)
+
+        if not check_file(audio_name + '.wav'):
+            extract_wav(path, audio_name)
+
+        if not check_file(audio_name + '.ac3'):
+            convert_to_ac3(audio_name)
+
+        if not check_file(encode_name + '-' + resolution + "pencode.mkv"):
+            run_encode(encode_name + '1080.avs', encode_name, '1080p')
 
     elif resolution == "720":
 
-        #Executes the write_avs function in 720p mode
-        write_avs(encode_name + resolution + '.avs', '720', path)
-        extract_wav(path, audio_name)
-        convert_to_ac3(audio_name)
-        run_encode(encode_name + '720.avs', encode_name, '720p')
+        if not check_file(encode_name + resolution + '.avs'):
+            #Executes the write_avs function in 1080p mode
+            write_avs(encode_name + resolution + '.avs', '720', path)
+
+        if not check_file(audio_name + '.wav'):
+            extract_wav(path, audio_name)
+
+        if not check_file(audio_name + '.ac3'):
+            convert_to_ac3(audio_name)
+
+        if not check_file(encode_name + '-' + resolution + "pencode.mkv"):
+            run_encode(encode_name + '720.avs', encode_name, '720p')
 
     elif resolution == "both":
 
-        #Executes the write_avs function in both modes
-        write_avs(encode_name, 'both', path)
+        if check_file(encode_name + '720' + '.avs'):
+            if check_file(encode_name + '1080' + '.avs'):
+                #Executes the write_avs function in both modes
+                write_avs(encode_name, 'both', path)
         extract_wav(path, audio_name)
         convert_to_ac3(audio_name)
         run_encode(encode_name + '1080.avs', encode_name, '1080p')
