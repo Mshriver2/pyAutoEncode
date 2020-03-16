@@ -32,7 +32,7 @@ path = raw_input("Enter path of movie to encode: ")
 resolution = raw_input("Quality of encode - (1080/720/both) - both does not work for tests: ")
 audio_name = raw_input("Enter a name for the .wav file: ")
 encode_name = raw_input("Enter a name for encoded mkv file: ")
-is_test = raw_input("Would you like to run a test encode? Y / N")
+is_test = raw_input("Would you like to run a test encode? (Y / N): ")
 
 # function for running a test encode, it selects 30 seconds worth of random frames for the test
 def test_encode(res, filename, file_path, test_name):
@@ -131,13 +131,13 @@ def check_file(file_to_check):
 
 ################ Main ################
 
-if is_test == "Y":
+if is_test == "Y" or "y":
 
     test_encode(resolution, encode_name + resolution + '.test.avs', path, encode_name)
 
-elif is_test == "N":
+elif is_test == "N" or "n":
 
-    if resolution == "1080":
+    if resolution == "1080" or "1080p":
 
         if not check_file(encode_name + resolution + '.avs'):
             #Executes the write_avs function in 1080p mode
@@ -156,7 +156,7 @@ elif is_test == "N":
             run_encode(encode_name + '1080.avs', encode_name, '1080p')
             print("Done!")
 
-    elif resolution == "720":
+    elif resolution == "720" or "720p":
 
         if not check_file(encode_name + resolution + '.avs'):
             #Executes the write_avs function in 1080p mode
