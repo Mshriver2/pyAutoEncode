@@ -3,6 +3,7 @@
 import sys
 import subprocess
 import os.path
+import configparser
 
 # checks to see if pip pyfiglet package is importable
 try:
@@ -33,6 +34,18 @@ resolution = raw_input("Quality of encode - (1080/720/both) - both does not work
 audio_name = raw_input("Enter a name for the .wav file: ")
 encode_name = raw_input("Enter a name for encoded mkv file: ")
 is_test = raw_input("Would you like to run a test encode? (Y / N): ")
+
+# vars from x264.ini for use in the run_encode function
+x264_config = configparser.ConfigParser()
+x264_config.read('/config/x264.ini')
+
+c_threads = x264_config.get('x264', 'cfg_threads')
+c_vbv_maxrate = x264_config['x264']['cfg_vbv_maxrate']
+c_color_matrix = x264_config['x264']['cfg_color_matrix']
+c_color_prim = x264_config['x264']['cfg_color_prim']
+c_transfer = x264_config['x264']['cfg_transfer']
+
+print(c_threads)
 
 # function for running a test encode, it selects 30 seconds worth of random frames for the test
 def test_encode(res, filename, file_path, test_name):
@@ -97,7 +110,7 @@ def extract_wav(file_path, name):
 def run_encode(avs_file, name, resolution):
 
     #Runs avs2yuv encode command in new shell + waits for finish
-    subprocess.check_output("start /wait avs2yuv \"" + avs_file + "\" -o - | x264 --level 4.1 --preset veryslow --crf 18.0 --deblock -3:-3 --bframes 16 --vbv-bufsize 78125 --qcomp 0.6 --direct auto --min-keyint 24 --vbv-maxrate 62500 --no-mbtree --trellis 2 --rc-lookahead 250 --merange 34 --subme 11 --no-dct-decimate --threads 8 --no-fast-pskip --colormatrix bt709 --colorprim bt709 --transfer bt709 --aq-mode 3 -o " + name + "-" + resolution + "encode.mkv --demuxer y4m - 2>&1", shell=True)
+    subprocess.check_output("start /wait avs2yuv \"" + avs_file + "\" -o - | x264 --level 4.1 --preset veryslow --crf 18.0 --deblock -3:-3 --bframes 16 --vbv-bufsize 78125 --qcomp 0.6 --direct auto --min-keyint 24 --vbv-maxrate " + c_vbv_maxrate + " --no-mbtree --trellis 2 --rc-lookahead 250 --merange 34 --subme 11 --no-dct-decimate --threads " + c_threads + " --no-fast-pskip --colormatrix " + c_color_matrix + " --colorprim " + c_color_prim + " --transfer " + c_transfer + " --aq-mode 3 -o " + name + "-" + resolution + "encode.mkv --demuxer y4m - 2>&1", shell=True)
 
 #converts the wav audio file to ac3 using AHK
 def convert_to_ac3(wav_name):
@@ -187,19 +200,19 @@ elif is_test == "N" or "n":
                 write_avs(encode_name + resolution + '.avs', '1080', path)
 
         #checks if .wav exists
-        if not check_file(audio_name + ".wav")
+        if not check_file(audio_name + ".wav"):
                 extract_wav(path, audio_name)
 
         #checks if .ac3 exits
-        if not check_file(audio_name + ".ac3")
+        if not check_file(audio_name + ".ac3"):
                 convert_to_ac3(audio_name)
 
         #checks if 1080encode.mkv exists exits
-        if not check_file(encode_name + ".mkv")
+        if not check_file(encode_name + ".mkv"):
                 run_encode(encode_name + '1080.avs', encode_name, '1080p')
 
         #checks if 7200encode.mkv exists exits
-        if not check_file(encode_name + ".mkv")
+        if not check_file(encode_name + ".mkv"):
                 run_encode(encode_name + '720.avs', encode_name, '720p')
 
     else:
