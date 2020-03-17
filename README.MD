@@ -1,5 +1,6 @@
 # pyAutoEncode
-Make your encodes a breeze with python.
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/mshriver2/pyAutoEncode?label=version) ![issues](https://img.shields.io/github/issues/Mshriver2/pyAutoEncode.svg) ![GitHub repo size](https://img.shields.io/github/repo-size/mshriver2/pyAutoEncode?color=green)  
+Make your encodes a breeze with python using pyAutoEncode. This script allows the complete automation of encoding a video with only a few clicks. This project uses Python, Python Pip packages, as well as AutoHotKey to automate the process of using the x264, Avspmod, avs2yuv, ffmpeg and Sound Forge applications to create high quality encodes.
 
 ## Screenshots
 add screenshots here, add gifs of usage if possible http://giftuna.io/
@@ -39,7 +40,7 @@ cd pyAutoEncode/
 * fix the x264.ini config file so the variables are loaded properly using the ConfigParser package
 * create a function to take screenshots using AvspMod or a CLI screenshot tool (ffmpeg or screengen in awsmfunc for CLI screens)
 * use the aimg api to upload screenshots Automatically - https://img.awesome-hd.me/settings
-* add build status shields to readme - https://shields.io/
+* ~~add build status shields to readme - https://shields.io/~~
 * add screenshots to readme
 * create and add a banner image to the top of readme
 
@@ -62,3 +63,5 @@ automatically through the script the next time.
 ## Credits
 mshriver2  
 sd31117
+
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
