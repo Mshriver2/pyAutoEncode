@@ -1,6 +1,9 @@
 # pyAutoEncode
+<img src="https://77extracts.com/images/pyautp.png" alt="banner" width="600" height="300">  
+
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/mshriver2/pyAutoEncode?label=version) ![issues](https://img.shields.io/github/issues/Mshriver2/pyAutoEncode.svg) ![GitHub repo size](https://img.shields.io/github/repo-size/mshriver2/pyAutoEncode?color=green)  
 Make your encodes a breeze with python using pyAutoEncode. This script allows the complete automation of encoding a video with only a few clicks. This project uses Python, Python Pip packages, as well as AutoHotKey to automate the process of using the x264, Avspmod, avs2yuv, ffmpeg and Sound Forge applications to create high quality encodes.
+
 
 ## Screenshots
 add screenshots here, add gifs of usage if possible http://giftuna.io/
