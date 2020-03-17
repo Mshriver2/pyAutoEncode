@@ -11,6 +11,7 @@ Install Pip Packages:
 ```shell
 pip install pynput
 pip install clipboard
+pip install configparser
 
 optional:
 pip install pyfiglet
@@ -35,7 +36,7 @@ cd pyAutoEncode/
 * ~~finish ahk file that executes sound forge commands~~
 * ~~add a function that allows you to run a test encode and returns the estimated file size~~
 * ~~create checks in the functions to check if the ac3 file, wav file, encode mkv file, or avs file already exits~~
-* create a x264 config file which the run_encode function reads its avs2yuv script from
+* fix the x264.ini config file so the variables are loaded properly using the ConfigParser package
 * create a function to take screenshots using AvspMod or a CLI screenshot tool (ffmpeg or screengen in awsmfunc for CLI screens)
 * use the aimg api to upload screenshots Automatically - https://img.awesome-hd.me/settings
 * add build status shields to readme - https://shields.io/
