@@ -3,7 +3,6 @@
 import sys
 import subprocess
 import os.path
-import configparser
 
 # checks to see if pip pyfiglet package is importable
 try:
@@ -36,14 +35,15 @@ encode_name = raw_input("Enter a name for encoded mkv file: ")
 is_test = raw_input("Would you like to run a test encode? (Y / N): ")
 
 # vars from x264.ini for use in the run_encode function
-x264_config = configparser.ConfigParser()
-x264_config.read('/config/x264.ini')
+from ConfigParser import SafeConfigParser
+x264_config = SafeConfigParser()
+x264_config.read('./config/x264.ini')
 
 c_threads = x264_config.get('x264', 'cfg_threads')
-c_vbv_maxrate = x264_config['x264']['cfg_vbv_maxrate']
-c_color_matrix = x264_config['x264']['cfg_color_matrix']
-c_color_prim = x264_config['x264']['cfg_color_prim']
-c_transfer = x264_config['x264']['cfg_transfer']
+c_vbv_maxrate = x264_config.get('x264', 'cfg_vbv_maxrate')
+c_color_matrix = x264_config.get('x264', 'cfg_color_matrix')
+c_color_prim = x264_config.get('x264', 'cfg_color_prim')
+c_transfer = x264_config.get('x264', 'cfg_transfer')
 
 print(c_threads)
 
@@ -144,13 +144,13 @@ def check_file(file_to_check):
 
 ################ Main ################
 
-if is_test == "Y" or "y":
+if is_test == "Y":
 
     test_encode(resolution, encode_name + resolution + '.test.avs', path, encode_name)
 
-elif is_test == "N" or "n":
+elif is_test == "N":
 
-    if resolution == "1080" or "1080p":
+    if resolution == "1080":
 
         if not check_file(encode_name + resolution + '.avs'):
             #Executes the write_avs function in 1080p mode
@@ -169,7 +169,7 @@ elif is_test == "N" or "n":
             run_encode(encode_name + '1080.avs', encode_name, '1080p')
             print("Done!")
 
-    elif resolution == "720" or "720p":
+    elif resolution == "720":
 
         if not check_file(encode_name + resolution + '.avs'):
             #Executes the write_avs function in 1080p mode
