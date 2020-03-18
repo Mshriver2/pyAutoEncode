@@ -55,7 +55,7 @@ A. Yes you may adjust the x264 from config file (insert file name here)
 Q. Where can I find my API key for the AHD img auto screenshot upload?  
 A. Login to https://img.awesome-hd.me/settings
 
-Q. Does this script working on Windows Server?  
+Q. Does this script work on Windows Server?  
 A. Yes but you may have to follow the install instructions in the optional folder.
 
 Q. Why is my Sound Forge opening the wrong folder and or saving to the wrong folder?  
