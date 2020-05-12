@@ -46,6 +46,7 @@ cd pyAutoEncode/
 * ~~add build status shields to readme - https://shields.io/~~
 * add screenshots to readme
 * create and add a banner image to the top of readme
+* Update to Python 3
 
 
 ## FAQ
