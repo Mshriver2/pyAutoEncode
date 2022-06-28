@@ -45,7 +45,7 @@ cd pyAutoEncode/
 * use the aimg api to upload screenshots Automatically - https://img.awesome-hd.me/settings
 * ~~add build status shields to readme - https://shields.io/~~
 * add screenshots to readme
-* create and add a banner image to the top of readme
+* ~~create and add a banner image to the top of readme~~
 * Update to Python 3
 
 
